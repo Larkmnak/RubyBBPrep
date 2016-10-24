@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <title>Bright Ideas</title>
+  </head>
+  <body>
+    <h1>Bright Ideas</h1>
+    <p><a href="/users/logout">Logout</a> | <a href="/users/<%= session[:user_id] %>">Home</a></p>
+    <hr>
+    <h4><a href="/ideas/new">Add an Idea</a></h4>
+    <% @ideas.each do |idea| %>
+      <h2><%= idea[:book] %> :</h2>
+        <dl>
+          <dt><%= idea[:content] %> - <a href="/users/<%= idea.user.id %>" ><%= idea.user.alias %></a></dt>
+          <% @subs = Idea.where( thought:idea[:id] ) %>
+          <% @subs.each do |sub| %>
+            <dd> -
+              <%= sub[:content] %> -
+              <a href="/users/<%= sub.user.id %>"><%= sub.user.alias %></a>
+              <form action="/ideas/<%= sub[:id] %>/like" method="POST">
+                <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+                <p>Likes: <%= sub.likes.count %> | <input type="submit" value = "Like"></p>
+              </form>
+            </dd>
+          <% end %>
+        </dl>
+        <form action="/ideas/<%= idea[:id] %>/like" method="POST">
+          <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+          <p>Likes: <%= idea.likes.count %> | <input type="submit" value = "Like"></p>
+        </form>
+        <form action="/ideas/<%= idea[:id] %>/add"  method="POST">
+          <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+          <textarea name="content"></textarea>
+          <input type="submit" value="Add Idea!" >
+        </form>
+    <% end %>
+  </body>
+</html>

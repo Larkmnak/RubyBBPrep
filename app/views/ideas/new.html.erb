@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <title>New Idea</title>
+  </head>
+  <body>
+    <h1>New Idea</h1>
+    <p><a href="/users/logout">Logout</a> | <a href="/users/<%= session[:user_id] %>">Home</a></p>
+    <hr>
+    <form action="/ideas/create" method="POST">
+      <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+      <p>Book Title:</p>
+      <p> <input type="text" name="book" ></p>
+      <p>Content:</p>
+      <p><textarea name='content'></textarea></p>
+      <input type="submit" value="Think Out-loud!">
+    </form>
+  </body>
+
+</html>

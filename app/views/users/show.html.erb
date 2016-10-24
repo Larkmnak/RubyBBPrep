@@ -1,0 +1,18 @@
+<html>
+<head>
+  <title>Home</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<p><a href="/users/logout">Logout</a></p>
+<h4>Name: <%= @user[:name] %></h4>
+<h4>Alias: <%= @user[:alias] %></h4>
+<h4>Email: <%= @user[:email] %></h4>
+<hr>
+<h4>Total Number of Ideas: <%= @ideas %></h4>
+<h4>Total Number of Likes: <%= @likes %></h4>
+<p><a href="/ideas">Bright Ideas </a> | <a href="/users/logout"> Logout</a></p>
+</body>
+</html>

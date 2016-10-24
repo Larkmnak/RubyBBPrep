@@ -1,0 +1,30 @@
+<html>
+<head>
+  <title>Login</title>
+</head>
+<body>
+<h1>Welcome!</h1>
+<hr>
+<h3>Log On</h3>
+<form action="/users/login" method="POST">
+  <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+  <p>Email: <input type="text" name="login_email" ></p>
+  <p>Password: <input type="text" name="login_password"></p>
+    <input type="submit" value="Log On">
+</form>
+<hr>
+<h3>Create New</h3>
+<form action="/users/new" method="POST">
+  <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+  <p>Name: <input type='text' name="new_name" ></p>
+  <p>Alias: <input type="text" name="new_alias" ></p>
+  <p>Email: <input type="text" name="new_email" ></p>
+  <p>Password: <input type="text" name="new_password"></p>
+  <p>Password Confirm: <input type="text" name="password_confirm"></p>
+  <input type="submit" value="Create">
+</form>
+<% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+</body>
+</html>
